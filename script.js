@@ -1,32 +1,16 @@
 document.getElementById('search-form').addEventListener('submit', function(e) {
     e.preventDefault();
-    
-    document.getElementById('search-form').addEventListener('submit', function(e) {
-    e.preventDefault();
 
     const searchQuery = document.getElementById('search-query').value;
     document.getElementById('stock-symbol').textContent = `Stock Symbol: ${searchQuery}`;
     
+    // Call the functions to fetch stock price and SMA using the input symbol
     fetchStockPrice(searchQuery);
     fetchSMA(searchQuery);
-});
-document.getElementById('stock-symbol').textContent = `Stock Symbol: ${searchQuery}`;
-
-    const searchQuery = document.getElementById('search-query').value;
-    const apiKey = '87WMKJ5RVFN4W1KK'; // Replace with your Alpha Vantage API key
-    const apiUrl = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${searchQuery}&apikey=${apiKey}`;
-    fetchStockPrice(searchQuery);
-    fetchSMA(searchQuery);
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            displayResults(data); // Implement this function to handle the display of results
-        })
-        .catch(error => console.error('Error:', error));
 });
 
 function fetchStockPrice(symbol) {
-    const apiKey = '87WMKJ5RVFN4W1KK'; // Replace this with your Alpha Vantage API key
+    const apiKey = '87WMKJ5RVFN4W1KK'; // Your Alpha Vantage API key
     const url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${apiKey}`;
 
     fetch(url)
@@ -39,7 +23,7 @@ function fetchStockPrice(symbol) {
 }
 
 function fetchSMA(symbol) {
-    const apiKey = '87WMKJ5RVFN4W1KK'; // Replace this with your Alpha Vantage API key
+    const apiKey = '87WMKJ5RVFN4W1KK'; // Your Alpha Vantage API key
     const url = `https://www.alphavantage.co/query?function=SMA&symbol=${symbol}&interval=daily&time_period=10&series_type=close&apikey=${apiKey}`;
 
     fetch(url)
@@ -50,16 +34,4 @@ function fetchSMA(symbol) {
             document.getElementById('stock-sma').textContent = `10-Day SMA: ${latestSMA}`;
         })
         .catch(error => console.error('Error:', error));
-}
-
-function displayResults(data) {
-    const resultsContainer = document.getElementById('results');
-    resultsContainer.innerHTML = ''; // Clear previous results
-
-    // Example: Display stock symbols and names
-    data.bestMatches.forEach(stock => {
-        const div = document.createElement('div');
-        div.textContent = `${stock['1. symbol']} - ${stock['2. name']}`;
-        resultsContainer.appendChild(div);
-    });
 }
