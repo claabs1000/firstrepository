@@ -11,14 +11,12 @@ document.getElementById('search-form').addEventListener('submit', function(e) {
     fetchSMA(searchQuery);
 });
 document.getElementById('stock-symbol').textContent = `Stock Symbol: ${searchQuery}`;
-    
-    fetchStockPrice(searchQuery);
-    fetchSMA(searchQuery);
 
     const searchQuery = document.getElementById('search-query').value;
     const apiKey = '87WMKJ5RVFN4W1KK'; // Replace with your Alpha Vantage API key
     const apiUrl = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${searchQuery}&apikey=${apiKey}`;
-
+    fetchStockPrice(searchQuery);
+    fetchSMA(searchQuery);
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
