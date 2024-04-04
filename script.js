@@ -28,7 +28,7 @@ document.getElementById('stock-symbol').textContent = `Stock Symbol: ${searchQue
 });
 
 function fetchStockPrice(symbol) {
-    const apiKey = 'YOUR_API_KEY'; // Replace this with your Alpha Vantage API key
+    const apiKey = '87WMKJ5RVFN4W1KK'; // Replace this with your Alpha Vantage API key
     const url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${apiKey}`;
 
     fetch(url)
@@ -41,7 +41,7 @@ function fetchStockPrice(symbol) {
 }
 
 function fetchSMA(symbol) {
-    const apiKey = 'YOUR_API_KEY'; // Replace this with your Alpha Vantage API key
+    const apiKey = '87WMKJ5RVFN4W1KK'; // Replace this with your Alpha Vantage API key
     const url = `https://www.alphavantage.co/query?function=SMA&symbol=${symbol}&interval=daily&time_period=10&series_type=close&apikey=${apiKey}`;
 
     fetch(url)
